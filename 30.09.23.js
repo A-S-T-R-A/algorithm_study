@@ -118,23 +118,11 @@ A[0][0] a[1][0]
 
 кол-во новых массивов - количество цифр
 */
-const B = [
-    [1, 3, 0],
-    [2, 2, 5],
-]
-const K = B.length
-const L = B[0].length
-const mxs2 = []
-
-for (let l = 0; l < L; l++) {
-
-    let maxNumb2 = B[0][l]
-
-    for (let k = 1; k < K; k++) {
-        if (B[k][l] > maxNumb2) {
-            maxNumb2 = B[k][l] // если число в массиве больше предыдущего, оно становится максимальным.
-        }
-    }
-    mxs2.push(maxNumb2)
-    console.log(`result :`, mxs2)
+b = []
+For (let j =0; j<a[0].length; j++){
+  Let b_row =[]
+  For (let i =0; i<a.length;i++){
+     b_row.push(a[i][j]) 
+  }
+   b.push(b_row) 
 }
