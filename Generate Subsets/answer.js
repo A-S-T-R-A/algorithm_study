@@ -7,7 +7,7 @@ function generateSubsets(arr) {
             result.push(current)
             return
         }
-
+        console.log(result)
         generate([...current, arr[index]], index + 1)
         generate(current, index + 1)
     }

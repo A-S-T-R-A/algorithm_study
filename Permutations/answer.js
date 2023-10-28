@@ -4,19 +4,22 @@ function getPermutations(n) {
         initialArray.push(i)
     }
 
+    // Define a recursive function to generate permutations.
     function generate(arr, n) {
+        // Base case: If n is 0, print the current permutation.
         if (n === 0) {
             console.log(arr.join(" "))
         } else {
             for (let i = 0; i < n; i++) {
-                // Обмениваем элементы arr[i] и arr[n-1]
+                // Swap elements arr[i] and arr[n-1].
                 const temp = arr[i]
                 arr[i] = arr[n - 1]
                 arr[n - 1] = temp
 
+                // Recursively generate permutations for the remaining elements.
                 generate(arr, n - 1)
 
-                // Возвращаем элементы на свои места
+                // Backtrack by returning elements to their original positions.
                 const temp2 = arr[i]
                 arr[i] = arr[n - 1]
                 arr[n - 1] = temp2
@@ -24,6 +27,7 @@ function getPermutations(n) {
         }
     }
 
+    // Start generating permutations from the initial array.
     generate(initialArray, n)
 }
 
