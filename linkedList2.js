@@ -26,6 +26,10 @@ class LinkedList {
   }
 
   concat(list) {
+    if (!(list instanceof LinkedList)) {
+      throw new Error("Oops");
+    }
+
     if (this.first === null) {
       this.first = list.first;
     } else {
