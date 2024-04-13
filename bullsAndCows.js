@@ -1,30 +1,37 @@
-const secret = "1123"
-const guess = "0111"
-// result "1A3B"
+const secret = "112323"
+const guess = "011123"
+// result "1A1B"
 function bullsAndCows(secret, guess) {
+    let secretObj = {} // 123
+    let guessObj = {} // 011
     let bulls = 0
     let cows = 0
 
-    for (let i = 0; i < secret.length - 1; i++) {
+    for (let i = 0; i < secret.length; i++) {
         if (secret[i] === guess[i]) {
             bulls++
-        }
+        } else {
+            if (secretObj[secret[i]]) {
+                secretObj[secret[i]]++
+            } else {
+                secretObj[secret[i]] = 1
+            }
 
-        if (secret[0] === guess[i]) {
-            cows++
-        }
-        if (secret[1] === guess[i]) {
-            cows++
-        }
-        if (secret[2] === guess[i]) {
-            cows++
-        }
-        if (secret[3] === guess[i]) {
-            cows++
+            if (guessObj[guess[i]]) {
+                guessObj[guess[i]]++
+            } else {
+                guessObj[guess[i]] = 1
+            }
         }
     }
 
-    return `${bulls}A${cows}B`
+    for (let i = 0; i < 10; i++) {
+        if (secretObj[i] && guessObj[i]) {
+            cows += Math.min(secretObj[i], guessObj[i])
+        }
+    }
+
+    return `${bulls}B${cows}C`
 }
 
 console.log(bullsAndCows(secret, guess))
