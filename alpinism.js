@@ -30,56 +30,49 @@ const input3 = {
 function efficientClimb(input) {
   const { x, y, mountains } = input;
   let mood = -Infinity;
-
   let stack = [];
-  const left = [];
-  const right = [];
+  let left = [];
+  let currentLeftBeauty = 0;
 
   mountains.forEach((_, index, array) => {
     if (index === 0) {
-      left.push([]);
+      left.push(0);
       return;
     }
-
     const mountain = array[index - 1];
-
     while (stack.length > 0 && stack[stack.length - 1][0] <= mountain[0]) {
-      stack.pop();
+      currentLeftBeauty -= stack.pop()[1];
     }
-
     stack.push(mountain);
-
-    left.push(JSON.parse(JSON.stringify(stack)));
+    currentLeftBeauty += mountain[1];
+    left.push(currentLeftBeauty);
   });
 
   stack = [];
+  let right = [];
+  let currentRightBeauty = 0;
 
   mountains.toReversed().forEach((_, index, array) => {
     if (index === 0) {
-      right.push([]);
+      right.push(0);
       return;
     }
-
     const mountain = array[index - 1];
-
     while (stack.length > 0 && stack[stack.length - 1][0] <= mountain[0]) {
-      stack.pop();
+      currentRightBeauty -= stack.pop()[1];
     }
-
     stack.push(mountain);
-
-    right.push(JSON.parse(JSON.stringify(stack)));
+    currentRightBeauty += mountain[1];
+    right.push(currentRightBeauty);
   });
 
   right.reverse();
 
   for (let i = 0; i < mountains.length; i++) {
     const [height, beauty] = mountains[i];
-    const leftBeauty = left[i].reduce((acc, val) => acc + val[1], 0);
-    const rightBeauty = right[i].reduce((acc, val) => acc + val[1], 0);
-
+    const leftBeauty = left[i];
+    const rightBeauty = right[i];
     const currentMood = (beauty + leftBeauty + rightBeauty) * y - height * x;
-
     if (currentMood > mood) {
       mood = currentMood;
     }
