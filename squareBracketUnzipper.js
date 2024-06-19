@@ -43,8 +43,8 @@ function squareBracketUnzipper(input) {
   return output;
 }
 
-console.log(squareBracketUnzipper("")); // ''
-console.log(squareBracketUnzipper("aaa")); // 'aaa'
+// console.log(squareBracketUnzipper("")); // ''
+// console.log(squareBracketUnzipper("aaa")); // 'aaa'
 // console.log(squareBracketUnzipper("3[ab]")); // 'ababab'
 console.log(squareBracketUnzipper("2[ab3[d]]")); // 'abdddabddd'
-console.log(squareBracketUnzipper("2[ab3[d]ef]")); // 'abdddefabdddef'
+// console.log(squareBracketUnzipper("2[ab3[d]ef]")); // 'abdddefabdddef'
